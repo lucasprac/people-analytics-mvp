@@ -20,10 +20,22 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# CORS
+# CORS - configurar para produção
+allowed_origins = [
+    "http://localhost:4200",
+    "http://localhost:3000", 
+    "https://people-analytics-frontend.vercel.app",
+    "https://*.vercel.app"
+]
+
+if os.getenv('ENVIRONMENT') == 'production':
+    cors_origins = os.getenv('CORS_ORIGINS', '').split(',') if os.getenv('CORS_ORIGINS') else allowed_origins
+else:
+    cors_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Em produção, especificar os origins permitidos
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -82,7 +94,7 @@ class DashboardMetrics(BaseModel):
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "People Analytics MVP"}
+    return {"status": "ok", "service": "People Analytics MVP", "environment": os.getenv('ENVIRONMENT', 'development')}
 
 # --- Training Endpoints ---
 
@@ -396,4 +408,5 @@ def load_models():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
