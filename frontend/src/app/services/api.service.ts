@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface EmployeeData {
   employee_id: number;
@@ -57,7 +58,7 @@ export interface FeatureImportance {
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:8000/api';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -109,6 +110,6 @@ export class ApiService {
 
   // Health check
   healthCheck(): Observable<any> {
-    return this.http.get('http://localhost:8000/health');
+    return this.http.get(environment.apiUrl.replace('/api', '/health'));
   }
 }
