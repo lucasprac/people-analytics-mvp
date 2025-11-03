@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Material Design customizations */
+.mat-mdc-card {
+  margin-bottom: 16px;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+/* Custom styles for the application */
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.margin-bottom {
+  margin-bottom: 16px;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+/* Loading styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mat-mdc-card {
+    margin: 8px;
+  }
+}
+
+/* Charts and visualizations */
+.chart-container {
+  position: relative;
+  height: 400px;
+  margin: 20px 0;
+}
+
+/* Risk level colors */
+.risk-high {
+  color: #f44336;
+}
+
+.risk-medium {
+  color: #ff9800;
+}
+
+.risk-low {
+  color: #4caf50;
+}
