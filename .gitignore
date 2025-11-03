@@ -1,0 +1,1 @@
+backend/models/*.pkl\nbackend/data/*.csv\n__pycache__/\n*.pyc\nfrontend/node_modules/\nfrontend/dist/\nfrontend/.angular/cache
